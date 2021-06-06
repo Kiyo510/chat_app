@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">nuxt</h1>
+      <h1 class="title">{{ greet }}</h1>
       <div class="links">
         <a
           href="https://nuxtjs.org/"
@@ -26,7 +26,17 @@
 </template>
 
 <script>
-export default {}
+import Logo from '~/components/Logo.vue'
+
+export default {
+  components: {
+    Logo,
+  },
+  async asyncData(app) {
+    const greet = await app.$axios.$get('/').catch((err) => err)
+    return { greet }
+  },
+}
 </script>
 
 <style>
