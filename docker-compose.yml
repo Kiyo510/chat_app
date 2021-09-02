@@ -49,6 +49,8 @@ services:
       - TZ=${TZ}
     ports:
       - ${DB_PORT}:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
 
   front_app:
     build:
@@ -64,3 +66,6 @@ services:
       - web
     depends_on:
       - web
+
+volumes:
+  mysql_data:
