@@ -5,11 +5,10 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Ramsey\Uuid\Uuid;
 
-class User extends Authenticatable
+class AdminUser extends Authenticatable
 {
-    use Notifiable, Authenticatable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -37,11 +36,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->attributes['uuid'] = Uuid::uuid4()->toString();
-    }
 }
