@@ -60,6 +60,7 @@ services:
         - TZ=${TZ}
     volumes:
       - ./nuxt:/var/www/nuxt
+      - node_modules:/var/www/nuxt/node_modules
     ports:
       - ${FRONT_PORT}:3000
     links:
@@ -69,3 +70,4 @@ services:
 
 volumes:
   mysql_data:
+  node_modules:

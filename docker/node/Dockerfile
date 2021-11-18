@@ -7,7 +7,7 @@ COPY ./nuxt/ /var/www/nuxt/
 
 RUN apk update && \
   apk upgrade && \
-  apk add --no-cache make gcc g++ python && \
+  apk add --no-cache make gcc g++ python3 && \
   yarn install
 
 EXPOSE 3000
