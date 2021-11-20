@@ -16,7 +16,6 @@ use Illuminate\Http\Request;
 Route::group(["middleware" => "api"], function () {
     Route::post('/login', 'Auth\LoginController@login');
     Route::get('/current_admin_user', function () {
-        \Log::debug(Auth::user());
         return Auth::user();
     })->name('current_admin_user');
 });
