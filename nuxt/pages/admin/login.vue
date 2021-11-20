@@ -1,18 +1,46 @@
 <template>
-  <section>
-    <h1>Login</h1>
-    <form @submit.prevent="submit">
-      <div>
-        <label for="email">email</label>
-        <input type="text" id="email" v-model="email" />
-      </div>
-      <div>
-        <label for="password">password</label>
-        <input type="password" id="password" v-model="password" />
-      </div>
-      <button type="submit">login</button>
-    </form>
-  </section>
+  <v-app>
+    <v-card width="500px" class="mx-auto mt-15">
+      <v-card-title>管理画面</v-card-title>
+      <validation-observer ref="observer">
+        <v-card-text>
+          <v-form @submit.prevent="submit">
+            <validation-provider
+              v-slot="{ errors }"
+              name="Email"
+              rules="required"
+            >
+              <v-text-field
+                v-model="email"
+                label="Email"
+                :error-messages="errors"
+                prepend-icon="mdi-account-circle"
+                required
+              >
+              </v-text-field>
+            </validation-provider>
+            <validation-provider
+              v-slot="{ errors }"
+              name="password"
+              rules="required|password"
+            >
+              <v-text-field
+                type="password"
+                v-model="password"
+                label="Password"
+                :error-messages="errors"
+                prepend-icon="mdi-lock"
+                required
+              ></v-text-field>
+            </validation-provider>
+            <div class="text-center">
+              <v-btn class="info" type="submit">Login</v-btn>
+            </div>
+          </v-form>
+        </v-card-text>
+      </validation-observer>
+    </v-card>
+  </v-app>
 </template>
 
 <script>
@@ -35,3 +63,9 @@ export default {
   },
 };
 </script>
+
+<style lang="css" scoped>
+#app {
+  background-color: rgb(202, 202, 202);
+}
+</style>
