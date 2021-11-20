@@ -1,5 +1,5 @@
 <template>
-  <div>ダッシュボード画面</div>
+  <div>管理者管理</div>
 </template>
 
 <script>
