@@ -17,5 +17,12 @@ export const actions = {
       });
     console.log(response);
     commit("setAdminUser", response);
+  },
+  async logout({ commit }) {
+    const response = await this.$axios.$post("/logout")
+      .catch(err => {
+        console.log(err);
+      });
+    commit('setAdminUser', null);
   }
 };
