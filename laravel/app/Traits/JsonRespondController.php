@@ -147,4 +147,18 @@ trait JsonRespondController
             ],
         ]);
     }
+
+    /**
+     * 削除したオブジェクトを返却
+     *
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function respondObjectDeleted($id)
+    {
+        return $this->respond([
+            'deleted' => true,
+            'id' => $id,
+        ]);
+    }
 }
