@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\AdminUser;
-use App\Http\Requests\AdminUserRequest;
-use App\Http\Controllers\Api\ApiController;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Requests\AdminUserRequest;
+use Illuminate\Database\QueryException;
+use App\Http\Controllers\Api\ApiController;
 
 class AdminUserController extends ApiController
 {
@@ -62,7 +63,6 @@ class AdminUserController extends ApiController
      */
     public function update(Request $request, $id): JsonResponse
     {
-        \Log::debug($request->all());
 
         try {
             $validated = $request->all();
@@ -87,10 +87,10 @@ class AdminUserController extends ApiController
         try {
             $adminUser = AdminUser::findOrFail($id);
             $adminUser->delete();
-
-            return $this->respondObjectDeleted($id);
         } catch (\Throwable $e) {
             return $this->respondNotFound();
         }
+
+        return $this->respondObjectDeleted($id);
     }
 }

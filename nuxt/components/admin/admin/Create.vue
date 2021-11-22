@@ -29,7 +29,7 @@
         <validation-provider
           v-slot="{ errors }"
           name="password"
-          rules="required|password"
+          rules="required"
         >
           <v-text-field
             type="password"
