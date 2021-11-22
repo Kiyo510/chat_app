@@ -2,6 +2,11 @@
   <v-card v-show="dialog">
     <v-card-title>
       <span class="text-h5">管理者登録</span>
+      <div v-if="Object.keys(errors).length > 0">
+        <v-alert v-for="(value, key) in errors" :key="key" type="error">
+          {{ value[0] }}
+        </v-alert>
+      </div>
     </v-card-title>
 
     <v-card-text>
@@ -79,17 +84,14 @@ export default {
     },
     async save() {
       this.$axios
-        .$post("admins", this.form)
+        .$post("/admins", this.form)
         .then((res) => {
-          console.log(res);
+          this.close();
+          this.getAdminUsers();
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
-
-      this.close();
-      this.getAdminUsers();
-      this.$router.go({ path: this.$router.currentRoute.path, force: true });
     },
   },
 };
