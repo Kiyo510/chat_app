@@ -2,8 +2,8 @@
   <v-card v-show="dialog">
     <v-card-title>
       <span class="text-h5">管理者登録</span>
-      <div v-if="Object.keys(errors).length > 0">
-        <v-alert v-for="(value, key) in errors" :key="key" type="error">
+      <div v-if="Object.keys(validationErrors).length > 0">
+        <v-alert v-for="(value, key) in validationErrors" :key="key" type="error">
           {{ value[0] }}
         </v-alert>
       </div>
