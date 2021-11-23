@@ -65,11 +65,10 @@ class AdminUserController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return JsonResponse
      */
-    public function update(Request $request, $id): JsonResponse
+    public function update(AdminUserUpdateRequest $request, $id): JsonResponse
     {
-
         try {
-            $validated = $request->all();
+            $validated = $request->validationData();
             $adminUser = AdminUser::findOrFail($id);
             $adminUser->fill($validated);
             $adminUser->save();
