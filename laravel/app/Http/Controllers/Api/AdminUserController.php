@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\AdminUser;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Http\Requests\AdminUserRequest;
+use App\Http\Requests\AdminUserStoreRequest;
+use App\Http\Requests\AdminUserUpdateRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
 use App\Http\Controllers\Api\ApiController;
 
@@ -26,17 +28,19 @@ class AdminUserController extends ApiController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 管理者登録
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminUserRequest $request)
+    public function store(AdminUserStoreRequest $request)
     {
         try {
-            $validated = $request->validated();
-            $AdminUser = new AdminUser($validated);
-            $AdminUser->save();
+            AdminUser::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
         } catch (QueryException $e) {
             return $this->respondInvalidQuery($e);
         }
