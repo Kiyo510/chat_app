@@ -91,6 +91,7 @@ export default {
         .$post("/admins", this.form)
         .then((res) => {
           this.close();
+          this.$toast.global.success_message({ message: "登録しました" });
           this.getAdminUsers();
         })
         .catch((err) => {

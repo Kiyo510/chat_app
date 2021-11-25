@@ -34,8 +34,27 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
-    "@nuxtjs/proxy"
+    "@nuxtjs/proxy",
+    '@nuxtjs/toast',
   ],
+
+  toast: {
+    position: 'top-right',
+    register: [
+      {
+        name: 'success_message',
+        message: (payload) => {
+          if (!payload.message) return '更新しました'
+          return payload.message
+        },
+        options: {
+          type: 'success',
+          duration: 3000,
+          className: ['toast-success'],
+        },
+      },
+    ],
+  },
 
   axios: {
     credentials: true

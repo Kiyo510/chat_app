@@ -84,18 +84,17 @@ export default {
       let params = {
         name: this.form.name,
         email: this.form.email,
-        passsword: this.form.passsword
-      }
+        passsword: this.form.passsword,
+      };
       this.$axios
         .$put(`/admins/${this.form.id}`, params)
         .then((res) => {
-          console.log(res);
+          this.$toast.global.success_message();
+          this.close();
         })
         .catch((err) => {
           console.log(err);
         });
-
-      this.close();
     },
   },
 };
