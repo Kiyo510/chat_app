@@ -20,7 +20,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     "~/plugins/axios",
-    '@plugins/vee-validate'
+    '@plugins/vee-validate',
+    '@plugins/mixins/validation.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -33,8 +34,27 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
-    "@nuxtjs/proxy"
+    "@nuxtjs/proxy",
+    '@nuxtjs/toast',
   ],
+
+  toast: {
+    position: 'top-right',
+    register: [
+      {
+        name: 'success_message',
+        message: (payload) => {
+          if (!payload.message) return '更新しました'
+          return payload.message
+        },
+        options: {
+          type: 'success',
+          duration: 3000,
+          className: ['toast-success'],
+        },
+      },
+    ],
+  },
 
   axios: {
     credentials: true
@@ -58,7 +78,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-     transpile: [
+    transpile: [
       'vee-validate/dist/rules'
     ]
   }

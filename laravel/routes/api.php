@@ -15,8 +15,13 @@ use Illuminate\Http\Request;
 
 Route::group(["middleware" => "api"], function () {
     Route::post('/login', 'Auth\LoginController@login');
-    Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-    Route::get('/current_admin_user', function () {
-        return Auth::user();
-    })->name('current_admin_user');
+    Route::middleware(['auth'])->group(function () {
+        Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+        Route::get('/current_admin_user', function () {
+            return Auth::user();
+        })->name('current_admin_user');
+        Route::group(['namespace' => 'Api'], function () {
+            Route::apiResource('admins', 'AdminUserController');
+        });
+    });
 });
