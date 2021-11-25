@@ -60,12 +60,6 @@
 <script>
 export default {
   name: "Edit",
-  props: {
-    getAdminUsers: {
-      type: Function,
-      required: true,
-    },
-  },
   data() {
     return {
       form: {},
