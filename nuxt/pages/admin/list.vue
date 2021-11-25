@@ -33,12 +33,9 @@
         <v-icon small class="mr-2" @click="openEditModal(item)">
           mdi-pencil
         </v-icon>
-        <Edit
-          ref="openEditModal"
-          :get-admin-users="getAdminUsers"
-          @close-modal="close"
-        />
-        <v-icon small @click="deleteAdmin(item)"> mdi-delete </v-icon>
+        <Edit ref="openEditModal" />
+        <v-icon small @click="openDeleteModal(item)"> mdi-delete </v-icon>
+        <Delete ref="openDeleteModal" @get-admin-users="getAdminUsers" />
       </template>
     </v-data-table>
   </v-card>
@@ -50,6 +47,7 @@ export default {
   components: {
     Create: () => import("@/components/admin/admin/Create"),
     Edit: () => import("@/components/admin/admin/Edit"),
+    Delete: () => import("@/components/admin/admin/Delete"),
   },
   data() {
     return {
@@ -85,23 +83,8 @@ export default {
     openEditModal(item) {
       this.$refs.openEditModal.open(item);
     },
-    async deleteAdmin(item) {
-      await this.$axios
-        .$delete(`/admins/${item.id}`)
-        .then((res) => {
-          if (res.deleted) {
-            //成功したときの処理
-          }
-          // this.submitStatus = "OK";
-          // this.$toast.global.instant_success({
-          //   message: "アカウントを削除しました",
-          // });
-        })
-        .catch((err) => {
-          // this.submitStatus = "ERROR";
-          // this.error = err.response;
-          // this.$sentry.captureException(err);
-        });
+    openDeleteModal(item) {
+      this.$refs.openDeleteModal.open(item);
     },
   },
 };
