@@ -1,0 +1,17 @@
+name: PHP Unit
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    name: Testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Installing PHP
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: 7.4
+          extension-csv: mbstring, xdebug, dom
+      - name: Executio PHP Unit
+        run: composer install && composer run test
