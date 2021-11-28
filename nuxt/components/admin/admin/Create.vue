@@ -2,17 +2,18 @@
   <v-card v-show="dialog">
     <v-card-title>
       <span class="text-h5">管理者登録</span>
-      <div v-if="Object.keys(validationErrors).length > 0">
-        <v-alert
-          v-for="(value, key) in validationErrors"
-          :key="key"
-          type="error"
-        >
-          {{ value[0] }}
-        </v-alert>
-      </div>
     </v-card-title>
-
+    <div v-if="Object.keys(validationErrors).length > 0">
+      <v-alert
+        v-for="(value, key) in validationErrors"
+        :key="key"
+        type="error"
+        width="580px"
+        class="mx-auto pa-3 ma-2 text-body-2"
+      >
+        {{ value[0] }}
+      </v-alert>
+    </div>
     <v-card-text>
       <v-form @submit.prevent="submit">
         <validation-provider v-slot="{ errors }" name="Name" rules="required">
