@@ -13,7 +13,7 @@
           <v-toolbar-title>管理者管理</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
-          <v-dialog v-model="dialog" width="400px">
+          <v-dialog v-model="dialog" width="600px">
             <template v-slot:activator="{ on, attrs }">
               <v-row justify="end" class="mr-1">
                 <v-btn color="primary" dark v-bind="attrs" v-on="on">

@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+use App\Rules\PasswordRule;
+
 class AdminUserStoreRequest extends ApiRequest
 {
     /**
@@ -23,8 +26,8 @@ class AdminUserStoreRequest extends ApiRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
+            'email' => ['required', Rule::unique('admin_users')],
+            'password' => ['required', new PasswordRule()],
         ];
     }
 
@@ -33,6 +36,7 @@ class AdminUserStoreRequest extends ApiRequest
         return [
             'name.required' => '名前は必須です。',
             'email.required' => 'Eメールは必須です。',
+            'email.unique' => 'Eメールはすでに存在しています',
             'password.required' => 'パスワードは必須です。',
         ];
     }

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use App\Rules\PasswordRule;
 use App\AdminUser;
 
 class AdminUserUpdateRequest extends ApiRequest
@@ -12,7 +14,7 @@ class AdminUserUpdateRequest extends ApiRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -24,30 +26,21 @@ class AdminUserUpdateRequest extends ApiRequest
      */
     public function rules(): array
     {
+
         return [
+            'id' => 'required',
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'nullable'
+            'email' => ['required', Rule::unique('App\AdminUser')->ignore($this->id)],
+            'password' => new PasswordRule(),
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'name.required' => '名前は必須です。',
             'email.required' => 'Eメールは必須です。',
-            'password.required' => 'パスワードは必須です。',
+            'email.unique' => '入力したEメールはすでに存在しています。',
         ];
-    }
-
-    public function validationData()
-    {
-        $data = $this->all();
-
-        if (isset($data['password'])) {
-            $data['password'] = Hash::make($data['password']);
-        }
-
-        return $data;
     }
 }
