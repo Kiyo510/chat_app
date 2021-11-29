@@ -1,6 +1,10 @@
 name: PHP Unit
 on: [ push, pull_request ]
 
+defaults:
+  run:
+    working-directory: ./laravel
+
 jobs:
   build:
     name: Testing
@@ -23,13 +27,9 @@ jobs:
         run: php -m
       - name: Change Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
-        working-directory: ./laravel
       - name: Run migration
         run: php artisan migrate --database=mysql_testing
-        working-directory: ./laravel
       - name: Install Libraries
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-        working-directory: ./laravel
       - name: Run PHP Unit
         run: cp .env.example .env && php artisan key:generate && composer run test
-        working-directory: ./laravel
