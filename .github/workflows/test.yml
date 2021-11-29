@@ -29,13 +29,6 @@ jobs:
       DB_PASSWORD: password
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Installing PHP
-        uses: shivammathur/setup-php@master
-        with:
-          php-version: 7.4
-          extension-csv: mbstring, xdebug
       - uses: actions/checkout@v2
       - name: cache vendor
         id: cache
