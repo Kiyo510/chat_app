@@ -1,10 +1,6 @@
 name: PHP Unit
 on: [ push, pull_request ]
 
-defaults:
-  run:
-    working-directory: ./laravel
-
 jobs:
   build:
     name: Testing
@@ -33,3 +29,6 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Run PHP Unit
         run: cp .env.example .env && php artisan key:generate && composer run test
+        working-directory: ./laravel
+
+
