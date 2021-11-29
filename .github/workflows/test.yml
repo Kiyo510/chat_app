@@ -22,4 +22,4 @@ jobs:
       - name: Check PHP Extensions
         run: php -m
       - name: Execution PHP Unit
-        run: cp .env.example .env && cd laravel && composer install && php artisan key:generate && composer run test
+        run: cd laravel && cp .env.example .env && composer install && php artisan key:generate && composer run test
