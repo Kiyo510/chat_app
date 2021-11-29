@@ -46,8 +46,8 @@ jobs:
       - name: composer install
         if: steps.cache.outputs.cache-hit != 'true'
         run: composer install -n --prefer-dist
-      # - name: Run phpstan
-        # run: ./vendor/bin/phpstan --memory-limit=1G analyse
+      - name: Run phpstan
+        run: ./vendor/bin/phpstan --memory-limit=1G analyse
       - name: Add Plugin
         run: sudo apt install -y php7.4-xml
       - name: Check PHP Version
