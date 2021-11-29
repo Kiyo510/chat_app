@@ -25,7 +25,6 @@ abstract class ApiRequest extends FormRequest
             ],
         ];
 
-        \Log::debug($data);
         throw new HttpResponseException(response()->json($data, 422, [], JSON_UNESCAPED_UNICODE));
     }
 }

@@ -9,7 +9,7 @@ use Ramsey\Uuid\Uuid;
 
 class User extends Authenticatable
 {
-    use Notifiable, Authenticatable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
