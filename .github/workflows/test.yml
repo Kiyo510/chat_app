@@ -9,6 +9,25 @@ jobs:
   build:
     name: Testing
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0.19
+        ports:
+          - 3306:3306
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: testdatabase
+
+    env:
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: livechat_test_db
+      DB_USERNAME: root
+      DB_PASSWORD: password
+
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -29,9 +48,9 @@ jobs:
         run: chmod -R 777 storage bootstrap/cache
       - name: Install Libraries
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      - name: Set env
-        run: cp .env.example .env
+      - name: composer dump autoload
+        run: composer dump-autoload
       - name: Run migration
-        run: php artisan migrate --database=mysql_testing --force
+        run: php artisan migrate
       - name: Run PHP Unit
         run:  php artisan key:generate && composer run test
