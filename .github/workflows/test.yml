@@ -23,6 +23,7 @@ jobs:
         run: php -m
       - name: Change Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
+        working-directory: ./laravel
       - name: Run migration
         run: php artisan migrate --database=mysql_testing
       - name: Install Libraries
