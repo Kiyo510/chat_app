@@ -26,6 +26,7 @@ jobs:
         working-directory: ./laravel
       - name: Run migration
         run: php artisan migrate --database=mysql_testing
+        working-directory: ./laravel
       - name: Install Libraries
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Run PHP Unit
