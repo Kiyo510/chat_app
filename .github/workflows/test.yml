@@ -29,14 +29,12 @@ jobs:
       DB_PASSWORD: password
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - name: Installing PHP
-        uses: shivammathur/setup-php@master
+        uses: shivammathur/setup-php@v2
         with:
           php-version: 7.4
           extension-csv: mbstring, xdebug
-      - uses: actions/checkout@v2
       - name: cache vendor
         id: cache
         uses: actions/cache@v1
@@ -48,6 +46,8 @@ jobs:
       - name: composer install
         if: steps.cache.outputs.cache-hit != 'true'
         run: composer install -n --prefer-dist
+      - name: Run phpstan
+        run: ./vendor/bin/phpstan --memory-limit=1G analyse
       - name: Add Plugin
         run: sudo apt install -y php7.4-xml
       - name: Check PHP Version
