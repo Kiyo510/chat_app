@@ -52,5 +52,7 @@ jobs:
         run: composer dump-autoload
       - name: Run migration
         run: php artisan migrate --force
+      - name: Set .env
+        run: cp .env.example .env
       - name: Run PHP Unit
         run:  php artisan key:generate && composer run test
