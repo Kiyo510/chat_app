@@ -1,0 +1,57 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Api\\\\AdminUserController\\:\\:show\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
+			count: 1
+			path: app/Http/Controllers/Api/AdminUserController.php
+
+		-
+			message: "#^Call to static method apiResource\\(\\) on an unknown class Route\\.$#"
+			count: 1
+			path: routes/api.php
+
+		-
+			message: "#^Call to static method get\\(\\) on an unknown class Route\\.$#"
+			count: 1
+			path: routes/api.php
+
+		-
+			message: "#^Call to static method group\\(\\) on an unknown class Route\\.$#"
+			count: 2
+			path: routes/api.php
+
+		-
+			message: "#^Call to static method middleware\\(\\) on an unknown class Route\\.$#"
+			count: 1
+			path: routes/api.php
+
+		-
+			message: "#^Call to static method post\\(\\) on an unknown class Route\\.$#"
+			count: 2
+			path: routes/api.php
+
+		-
+			message: "#^Call to static method user\\(\\) on an unknown class Auth\\.$#"
+			count: 1
+			path: routes/api.php
+
+		-
+			message: "#^Call to static method channel\\(\\) on an unknown class Broadcast\\.$#"
+			count: 1
+			path: routes/channels.php
+
+		-
+			message: "#^Call to static method command\\(\\) on an unknown class Artisan\\.$#"
+			count: 1
+			path: routes/console.php
+
+		-
+			message: "#^Undefined variable\\: \\$this$#"
+			count: 1
+			path: routes/console.php
+
+		-
+			message: "#^Call to static method get\\(\\) on an unknown class Route\\.$#"
+			count: 1
+			path: routes/web.php
+
