@@ -51,6 +51,6 @@ jobs:
       - name: composer dump autoload
         run: composer dump-autoload
       - name: Run migration
-        run: php artisan migrate
+        run: php artisan migrate --force
       - name: Run PHP Unit
         run:  php artisan key:generate && composer run test
