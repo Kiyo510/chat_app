@@ -64,5 +64,11 @@ jobs:
         run: php artisan migrate --force
       - name: Set .env
         run: cp .env.example .env
+      - name: Generate APP_KEY
+        run: php artisan key:generate
       - name: Run PHP Unit
-        run:  php artisan key:generate && composer run test
+        run:  ./vendor/bin/phpunit --coverage-clover=coverage.xml
+      - name: Upload coverage
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
