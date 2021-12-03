@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * @covers \App\Module\MyClass::doSomething
      *
      * @return void
      */
