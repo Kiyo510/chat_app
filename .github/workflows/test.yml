@@ -67,7 +67,7 @@ jobs:
       - name: Generate APP_KEY
         run: php artisan key:generate
       - name: Run PHP Unit
-        run:  ./vendor/bin/phpunit --coverage-clover=coverage.xml
+        run: XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
       - name: Upload coverage
         uses: codecov/codecov-action@v2
         with:
