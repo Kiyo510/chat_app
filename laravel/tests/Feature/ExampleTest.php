@@ -8,8 +8,8 @@ use Tests\TestCase;
 class ExampleTest extends TestCase
 {
     /**
-     * @covers \App\Module\MyClass::doSomething
-     *
+     * @coversNothing
+     * 
      * @return void
      */
     public function testBasicTest()
