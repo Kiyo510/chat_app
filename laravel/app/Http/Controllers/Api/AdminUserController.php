@@ -49,17 +49,6 @@ class AdminUserController extends ApiController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * 管理者編集
      *
      * @param  \Illuminate\Http\Request  $request
