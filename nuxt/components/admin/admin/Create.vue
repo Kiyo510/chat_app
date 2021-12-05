@@ -26,7 +26,7 @@
           >
           </v-text-field>
         </validation-provider>
-        <validation-provider v-slot="{ errors }" name="Email" rules="required">
+        <validation-provider v-slot="{ errors }" name="Email" rules="required|email">
           <v-text-field
             v-model="form.email"
             label="Email"
