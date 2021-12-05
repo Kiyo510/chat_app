@@ -66,8 +66,10 @@ class UserController extends ApiController
     public function update(UserUpdateRequest $request, string $id): JsonResponse
     {
         try {
+            $validated = $request->passedValidation();
+
             $user = $this->userRepository->getOneById($id);
-            $user->fill($request->all());
+            $user->fill($validated);
             $user->save();
         } catch (QueryException $e) {
             return $this->respondInvalidQuery();

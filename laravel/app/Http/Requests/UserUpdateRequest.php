@@ -30,7 +30,7 @@ class UserUpdateRequest extends ApiRequest
             'id' => 'required',
             'name' => 'required',
             'email' => ['required', Rule::unique('App\Models\User')->ignore($this->id)],
-            'password' => ['nullable', new PasswordRule()]
+            'password' => ['nullable', new PasswordRule()],
         ];
     }
 
@@ -48,14 +48,18 @@ class UserUpdateRequest extends ApiRequest
      *
      * @return void
      */
-    public function passedValidation(): void
+    public function passedValidation(): array
     {
-        $password = $this->get('password');
+        $request = $this->all();
 
         if ($this->filled('password')) {
-            $password = Hash::make($password);
+            $password = Hash::make($request['password']);
+            $this->merge(['password' => $password]);
+        } else {
+            // パスワードがNULLだとDBに保存できずエラーになるため、リクエストから削除
+            unset($request['password']);
         }
 
-        $this->merge(['password' => $password]);
+        return $request;
     }
 }
