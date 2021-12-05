@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\AdminUser;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\AdminUserStoreRequest;
 use App\Http\Requests\AdminUserUpdateRequest;
@@ -16,9 +15,9 @@ class AdminUserController extends ApiController
     /**
      * 管理者一覧
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $data = AdminUser::all();
 
@@ -30,10 +29,10 @@ class AdminUserController extends ApiController
     /**
      * 管理者登録
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  AdminUserStoreRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(AdminUserStoreRequest $request)
+    public function store(AdminUserStoreRequest $request): JsonResponse
     {
         try {
             AdminUser::create([

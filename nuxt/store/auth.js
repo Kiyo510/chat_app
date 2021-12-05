@@ -15,7 +15,6 @@ export const actions = {
       .catch(err => {
         console.log(err);
       });
-    console.log(response);
     commit("setAdminUser", response);
   },
   async logout({ commit }) {
