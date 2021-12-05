@@ -1,5 +1,5 @@
 name: PHP Unit
-on: [ push, pull_request ]
+on: push
 
 defaults:
   run:
