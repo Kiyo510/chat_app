@@ -31,7 +31,7 @@ class AdminUserUpdateRequest extends ApiRequest
             'id' => 'required',
             'name' => 'required',
             'email' => ['required', Rule::unique('App\AdminUser')->ignore($this->id)],
-            'password' => ['sometimes', new PasswordRule()],
+            'password' => ['nullable', new PasswordRule()],
         ];
     }
 
