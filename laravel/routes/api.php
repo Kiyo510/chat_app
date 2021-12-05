@@ -23,7 +23,7 @@ Route::group(["middleware" => "api"], function () {
         Route::group(['namespace' => 'Api'], function () {
             Route::apiResource('admins', 'AdminUserController');
             Route::group(['namespace' => 'Admin'], function () {
-                Route::apiResource('users', UserController::class);
+                Route::apiResource('users', 'UserController');
             });
         });
     });
