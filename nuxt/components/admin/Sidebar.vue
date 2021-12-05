@@ -41,7 +41,7 @@ export default {
         },
         {
           icon: "mdi-account",
-          title: "ユーザー一覧",
+          title: "ユーザー管理",
           to: "/admin/users",
         },
       ],
