@@ -50,8 +50,9 @@ class UserUpdateRequest extends ApiRequest
      */
     public function passedValidation(): void
     {
+        $password = $this->get('password');
+
         if ($this->filled('password')) {
-            $password = $this->get('password');
             $password = Hash::make($password);
         }
 
