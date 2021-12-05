@@ -1,5 +1,5 @@
 name: PHP Unit
-on: [ push, pull_request ]
+on: push
 
 defaults:
   run:
@@ -47,7 +47,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: composer install -n --prefer-dist
       - name: Run phpstan
-        run: ./vendor/bin/phpstan --memory-limit=1G analyse
+        run: ./vendor/bin/phpstan --memory-limit=1G analyse --no-progress
       - name: Add Plugin
         run: sudo apt install -y php7.4-xml
       - name: Check PHP Version
@@ -65,7 +65,7 @@ jobs:
       - name: Set .env
         run: cp .env.example .env
       - name: Generate APP_KEY
-        run: php artisan key:generate
+        run: php artisan key:generate --quiet
       - name: Run PHP Unit
         run: XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
       - name: Upload coverage
