@@ -10,3 +10,5 @@ parameters:
         - resources/views
         - routes
     level: 0
+    excludePaths:
+        - ./routes/console.php

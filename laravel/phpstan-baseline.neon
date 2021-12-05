@@ -7,7 +7,7 @@ parameters:
 
 		-
 			message: "#^Call to static method apiResource\\(\\) on an unknown class Route\\.$#"
-			count: 1
+			count: 2
 			path: routes/api.php
 
 		-
@@ -17,7 +17,7 @@ parameters:
 
 		-
 			message: "#^Call to static method group\\(\\) on an unknown class Route\\.$#"
-			count: 2
+			count: 3
 			path: routes/api.php
 
 		-
@@ -39,16 +39,6 @@ parameters:
 			message: "#^Call to static method channel\\(\\) on an unknown class Broadcast\\.$#"
 			count: 1
 			path: routes/channels.php
-
-		-
-			message: "#^Call to static method command\\(\\) on an unknown class Artisan\\.$#"
-			count: 1
-			path: routes/console.php
-
-		-
-			message: "#^Undefined variable\\: \\$this$#"
-			count: 1
-			path: routes/console.php
 
 		-
 			message: "#^Call to static method get\\(\\) on an unknown class Route\\.$#"
