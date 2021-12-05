@@ -70,7 +70,6 @@ export default {
       this.$axios
         .$get("users")
         .then((res) => {
-          console.log(res.data);
           this.loading = false;
           this.users = res.data;
         })

@@ -31,7 +31,7 @@ class AdminUserUpdateRequest extends ApiRequest
             'id' => 'required',
             'name' => 'required',
             'email' => ['required', Rule::unique('App\AdminUser')->ignore($this->id)],
-            'password' => new PasswordRule(),
+            'password' => ['nullable', new PasswordRule()],
         ];
     }
 
@@ -42,5 +42,25 @@ class AdminUserUpdateRequest extends ApiRequest
             'email.required' => 'Eメールは必須です。',
             'email.unique' => '入力したEメールはすでに存在しています。',
         ];
+    }
+
+    /**
+     * バリデーション通過後、パスワードがリクエストにあればハッシュ化したものをリクエストパラメータにセット
+     *
+     * @return void
+     */
+    public function passedValidation(): array
+    {
+        $request = $this->all();
+
+        if ($this->filled('password')) {
+            $password = Hash::make($request['password']);
+            $this->merge(['password' => $password]);
+        } else {
+            // パスワードがNULLだとDBに保存できずエラーになるため、リクエストから削除
+            unset($request['password']);
+        }
+
+        return $request;
     }
 }
