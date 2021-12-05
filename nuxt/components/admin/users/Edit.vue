@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" width="600px">
     <v-card>
       <v-card-title>
-        <span class="text-h5">管理者編集</span>
+        <span class="text-h5">ユーザー編集</span>
       </v-card-title>
       <div v-if="Object.keys(validationErrors).length > 0">
         <v-alert
