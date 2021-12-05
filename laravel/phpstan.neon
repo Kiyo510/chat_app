@@ -1,14 +1,13 @@
 includes:
-    - phpstan-baseline.neon
+    - ./vendor/nunomaduro/larastan/extension.neon
 
 parameters:
     paths:
         - app
-        - bootstrap
         - config
         - database
-        - resources/views
         - routes
+        - tests
     level: 0
     excludePaths:
         - ./routes/console.php
