@@ -80,7 +80,6 @@ export default {
   },
   methods: {
     async getUsers(page) {
-      console.log('page', page);
       this.$axios
         .$get("users", { params: { page: parseInt(page) } })
         .then((res) => {
