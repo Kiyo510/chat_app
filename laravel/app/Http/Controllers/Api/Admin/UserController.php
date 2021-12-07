@@ -28,7 +28,7 @@ class UserController extends ApiController
      */
     public function index(): JsonResponse
     {
-        $users = $this->userRepository->getAll();
+        $users = User::orderBy('created_at')->paginate(10);
 
         return $this->respond([
             'data' => $users,
