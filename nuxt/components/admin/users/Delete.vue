@@ -38,13 +38,9 @@ export default {
         .$delete(`/users/${item.id}`)
         .then((res) => {
           if (res.deleted) {
+            this.$emit("get-users");
             this.close();
             this.$toast.global.success_message({ message: "削除しました" });
-            //FIXME: リロードしないと、$refsが何故かundefinedになってしまい削除できないのでやむなく強制リロード
-            this.$router.go({
-              path: this.$router.currentRoute.path,
-              force: true,
-            });
           }
         })
         .catch((err) => {
