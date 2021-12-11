@@ -5,8 +5,6 @@
         :headers="headers"
         :items="users"
         :items-per-page="perPage"
-        :loading="loading"
-        loading-text="Loading... Please wait"
         class="elevation-1"
         hide-default-footer
       >
@@ -71,7 +69,6 @@ export default {
         { text: "メールアドレス", align: "center", value: "email" },
         { text: "操作", align: "center", value: "action", sortable: false },
       ],
-      loading: true,
       dialog: false,
     };
   },
@@ -83,8 +80,6 @@ export default {
       this.$axios
         .$get("users", { params: { page: parseInt(page) } })
         .then((res) => {
-          this.loading = false;
-
           this.perPage = res.data.per_page;
           this.lastPage = res.data.last_page;
           this.users = res.data.data;

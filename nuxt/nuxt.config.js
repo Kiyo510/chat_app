@@ -24,6 +24,8 @@ export default {
     '@plugins/mixins/validation.js'
   ],
 
+  loading: './components/Loading.vue',
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
