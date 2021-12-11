@@ -37,7 +37,7 @@
           </v-icon>
           <Edit ref="openEditModal" />
           <v-icon small @click="openDeleteModal(item)"> mdi-delete </v-icon>
-          <Delete ref="openDeleteModal" @get-admin-users="getUsers" />
+          <Delete ref="openDeleteModal" @get-users="getUsers" />
         </template>
       </v-data-table>
     </v-card>

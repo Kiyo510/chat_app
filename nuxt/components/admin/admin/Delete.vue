@@ -40,7 +40,7 @@ export default {
           if (res.deleted) {
             this.close();
             this.$toast.global.success_message({ message: "削除しました" });
-            //FIXME: リロードしないと、$refsが何故かundefinedになってしまい削除できないのでやむなく強制リロード
+            //FIXME: リロードしないと、$refsが何故かundefinedになってしまい削除できないのでやむなく強制リロード(ページネーションさせるとうまくうごくかも？)
             this.$router.go({
               path: this.$router.currentRoute.path,
               force: true,
