@@ -37,15 +37,14 @@ export default {
       await this.$axios
         .$delete(`/admins/${item.id}`)
         .then((res) => {
-          if (res.deleted) {
             this.close();
             this.$toast.global.success_message({ message: "削除しました" });
-            //FIXME: リロードしないと、$refsが何故かundefinedになってしまい削除できないのでやむなく強制リロード(ページネーションさせるとうまくうごくかも？)
-            this.$router.go({
-              path: this.$router.currentRoute.path,
-              force: true,
-            });
-          }
+            //FIXME: リロードしないと、$refsが何故かundefinedになってしまい削除できないのでやむなく強制リロード(ページネーションさせるとうまくうごく。)
+            // this.$router.go({
+            //   path: this.$router.currentRoute.path,
+            //   force: true,
+            // });
+            this.$emit('get-admin-users');
         })
         .catch((err) => {
           // this.submitStatus = "ERROR";
