@@ -4,8 +4,6 @@
       :headers="headers"
       :items="admins"
       :items-per-page="10"
-      :loading="loading"
-      loading-text="Loading... Please wait"
       class="elevation-1"
     >
       <template v-slot:top>
@@ -58,7 +56,6 @@ export default {
         { text: "メールアドレス", align: "center", value: "email" },
         { text: "操作", align: "center", value: "action", sortable: false },
       ],
-      loading: true,
       dialog: false,
     };
   },
@@ -70,7 +67,6 @@ export default {
       this.$axios
         .$get("admins")
         .then((res) => {
-          this.loading = false;
           this.admins = res.data;
         })
         .catch((err) => {
