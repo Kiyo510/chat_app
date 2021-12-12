@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\AdminUser;
+use App\Models\AdminUser;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\AdminUserStoreRequest;
 use App\Http\Requests\AdminUserUpdateRequest;

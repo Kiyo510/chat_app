@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use App\Rules\PasswordRule;
-use App\AdminUser;
+use App\Models\AdminUser;
 
 class AdminUserUpdateRequest extends ApiRequest
 {
@@ -30,7 +30,7 @@ class AdminUserUpdateRequest extends ApiRequest
         return [
             'id' => 'required',
             'name' => 'required',
-            'email' => ['required', Rule::unique('App\AdminUser')->ignore($this->id)],
+            'email' => ['required', Rule::unique('App\Models\AdminUser')->ignore($this->id)],
             'password' => ['nullable', new PasswordRule()],
         ];
     }
