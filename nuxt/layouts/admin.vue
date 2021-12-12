@@ -1,17 +1,9 @@
 <template>
   <v-app id="inspire">
+    <AdminNavBar @click="switchDrawer" @logout="logout"/>
     <v-navigation-drawer v-model="drawer" app dark>
       <AdminSidebar />
     </v-navigation-drawer>
-    <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>管理画面</v-toolbar-title>
-      <v-row justify="end">
-        <v-btn class="red white--text" @click="logout" type="submit"
-          >ログアウト</v-btn
-        >
-      </v-row>
-    </v-app-bar>
     <v-main>
       <Nuxt />
     </v-main>
@@ -19,13 +11,15 @@
 </template>
 
 <script>
-import AdminSidebar from "@/components/admin/Sidebar.vue";
+import AdminSidebar from "@/components/layouts/admins/Sidebar.vue";
+import AdminNavBar from "@/components/layouts/admins/NavBar.vue";
 
 export default {
   middleware: "not_logined_admin_user",
   name: "admin",
   components: {
     AdminSidebar,
+    AdminNavBar,
   },
   data: () => ({
     drawer: true,
@@ -35,6 +29,9 @@ export default {
       await this.$store.dispatch("auth/logout");
       this.$router.push("/admin/login");
     },
+    switchDrawer() {
+      this.drawer = !this.drawer
+    }
   },
 };
 </script>

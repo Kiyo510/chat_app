@@ -4,17 +4,10 @@
       <v-card-title>
         <span class="text-h5">管理者編集</span>
       </v-card-title>
-      <div v-if="Object.keys(validationErrors).length > 0">
-        <v-alert
-          v-for="(value, key) in validationErrors"
-          :key="key"
-          type="error"
-          width="580px"
-          class="mx-auto pa-3 ma-2 text-body-2"
-        >
-          {{ value[0] }}
-        </v-alert>
-      </div>
+      <AlertMessage
+        width="'580px'"
+        alertClass="'mx-auto pa-3 ma-2 text-body-2'"
+      />
       <v-card-text>
         <v-form @submit.prevent="submit">
           <validation-provider v-slot="{ errors }" name="Name" rules="required">
@@ -62,8 +55,13 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="close"> 閉じる </v-btn>
-        <v-btn color="blue darken-1" text @click="save"> 更新 </v-btn>
+        <CancelButton
+          @close="close"
+          :text="'閉じる'"
+          :color="'#dcdcdc'"
+          class="mr-3"
+        />
+        <SubmitButton :color="'blue darken-1'" :text="'更新'" @click="save" />
       </v-card-actions>
     </v-card>
   </v-dialog>

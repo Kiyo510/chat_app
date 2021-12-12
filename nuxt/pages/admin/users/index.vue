@@ -13,20 +13,18 @@
             <v-toolbar-title>ユーザー管理</v-toolbar-title>
             <v-divider class="mx-4" inset vertical></v-divider>
             <v-spacer></v-spacer>
-            <v-dialog v-model="dialog" width="600px">
-              <template v-slot:activator="{ on, attrs }">
-                <v-row justify="end" class="mr-1">
-                  <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                    新規登録
-                  </v-btn>
-                </v-row>
-              </template>
-              <Create
-                :dialog="dialog"
-                :get-users="getUsers"
-                @close-modal="close"
+            <v-row justify="end" class="mr-1">
+              <OpenModalButton
+                :text="'新規登録'"
+                :color="'primary'"
+                @open-modal="openCreateModal"
               />
-            </v-dialog>
+            </v-row>
+            <Create
+              ref="openCreateModal"
+              @get-all-data="getUsers"
+              @close-modal="close"
+            />
           </v-toolbar>
         </template>
         <template v-slot:[`item.action`]="{ item }">
@@ -35,7 +33,11 @@
           </v-icon>
           <Edit ref="openEditModal" />
           <v-icon small @click="openDeleteModal(item)"> mdi-delete </v-icon>
-          <Delete ref="openDeleteModal" @get-users="getUsers" />
+          <DeleteComfirm
+            ref="openDeleteModal"
+            @get-all-data="getUsers"
+            :endPoint="'users'"
+          />
         </template>
       </v-data-table>
     </v-card>
@@ -53,9 +55,8 @@
 export default {
   layout: "admin",
   components: {
-    Create: () => import("@/components/admin/users/Create"),
-    Edit: () => import("@/components/admin/users/Edit"),
-    Delete: () => import("@/components/admin/users/Delete"),
+    Create: () => import("@/components/pages/admins/user/Create"),
+    Edit: () => import("@/components/pages/admins/user/Edit"),
   },
   data() {
     return {
@@ -96,6 +97,9 @@ export default {
     },
     openDeleteModal(item) {
       this.$refs.openDeleteModal.open(item);
+    },
+    openCreateModal() {
+      this.$refs.openCreateModal.open();
     },
   },
 };

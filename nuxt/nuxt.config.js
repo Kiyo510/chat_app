@@ -21,7 +21,8 @@ export default {
   plugins: [
     "~/plugins/axios",
     '@plugins/vee-validate',
-    '@plugins/mixins/validation.js'
+    '@plugins/mixins/validation.js',
+    '@plugins/ui.js',
   ],
 
   loading: './components/Loading.vue',

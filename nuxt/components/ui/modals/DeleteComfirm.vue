@@ -1,4 +1,4 @@
- <template :ref="openEditModal">
+ <template>
   <v-dialog v-model="dialog" width="300">
     <v-card>
       <v-card-text class="text-center pt-5">
@@ -8,8 +8,8 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue" @click="close"> キャンセル </v-btn>
-        <v-btn color="red white--text" @click="deleteData(item)"> 削除 </v-btn>
+        <CancelButton @close="close" :text="'キャンセル'" :color="'#dcdcdc'" class="mr-3"/>
+        <DeleteButton @delete-data="deleteData(item, endPoint)" />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -17,7 +17,12 @@
 
 <script>
 export default {
-  layout: "Delete",
+  props: {
+    endPoint: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       item: {},
@@ -33,15 +38,18 @@ export default {
     close() {
       this.dialog = false;
     },
-    async deleteData(item) {
+    async deleteData(item, endPoint) {
       await this.$axios
-        .$delete(`/users/${item.id}`)
+        .$delete(`/${endPoint}/${item.id}`)
         .then((res) => {
-          if (res.deleted) {
-            this.$emit("get-users");
-            this.close();
-            this.$toast.global.success_message({ message: "削除しました" });
-          }
+          this.close();
+          this.$toast.global.success_message({ message: "削除しました" });
+          //FIXME: リロードしないと、$refsが何故かundefinedになってしまい削除できないのでやむなく強制リロード(ページネーションさせるとうまくうごく。)
+          // this.$router.go({
+          //   path: this.$router.currentRoute.path,
+          //   force: true,
+          // });
+          this.$emit("get-all-data");
         })
         .catch((err) => {
           // this.submitStatus = "ERROR";

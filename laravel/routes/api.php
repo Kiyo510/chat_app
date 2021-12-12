@@ -21,8 +21,8 @@ Route::group(["middleware" => "api"], function () {
             return Auth::user();
         })->name('current_admin_user');
         Route::group(['namespace' => 'Api'], function () {
-            Route::apiResource('admins', 'AdminUserController');
             Route::group(['namespace' => 'Admin'], function () {
+                Route::apiResource('admins', 'AdminUserController');
                 Route::apiResource('users', 'UserController');
             });
         });

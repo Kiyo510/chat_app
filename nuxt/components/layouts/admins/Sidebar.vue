@@ -32,7 +32,7 @@ export default {
         {
           icon: "mdi-apps",
           title: "ダッシュボード",
-          to: "/admin/",
+          to: "/admin/dashboard",
         },
         {
           icon: "mdi-chart-bubble",
