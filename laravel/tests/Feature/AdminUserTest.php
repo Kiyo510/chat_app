@@ -17,7 +17,9 @@ class AdminUserTest extends TestCase
     /**
      * 管理者一覧
      * 
-     * @covers \AdminUserController
+     * @covers App\Http\Controllers\Api\Admin\AdminUserController::index
+     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::respond
      * @return void
      */
     public function test_admin_user_get_all()
@@ -47,7 +49,12 @@ class AdminUserTest extends TestCase
     /**
      * 管理者登録
      *
-     * @covers \AdminUserController
+     * @covers App\Http\Controllers\Api\Admin\AdminUserController::store
+     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::setHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::respondWithOK
+     * @covers App\Traits\JsonRespondController::respond
+     * @covers App\Rules\PasswordRule::passes
      * @return void
      */
     public function test_admin_user_create()
@@ -63,7 +70,10 @@ class AdminUserTest extends TestCase
     /**
      * 管理者編集
      *
-     * @covers \AdminUserController
+     * @covers App\Http\Controllers\Api\Admin\AdminUserController::update
+     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::respond
+     * @covers App\Rules\PasswordRule::passes
      * @return void
      */
     public function test_admin_user_edit()
@@ -93,7 +103,10 @@ class AdminUserTest extends TestCase
     /**
      * 管理者削除
      *
-     * @covers \AdminUserController
+     * @covers App\Http\Controllers\Api\Admin\AdminUserController::destroy
+     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::respondObjectDeleted
+     * @covers App\Traits\JsonRespondController::respond
      * @return void
      */
     public function test_admin_user_delete()

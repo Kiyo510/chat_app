@@ -54,7 +54,10 @@ class UserTest extends TestCase
     /**
      * ユーザー一覧
      * 
-     * @covers \UserController
+     * @covers App\Http\Controllers\Api\Admin\UserController::index
+     * @covers App\Http\Controllers\Api\Admin\UserController::__construct
+     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::respond
      * @return void
      */
     public function test_user_get_all()
@@ -86,7 +89,13 @@ class UserTest extends TestCase
     /**
      * ユーザー登録
      *
-     * @covers \UserController
+     * @covers App\Http\Controllers\Api\Admin\UserController::store
+     * @covers App\Http\Controllers\Api\Admin\UserController::__construct
+     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
+     * @covers App\Http\Controllers\Api\ApiController::respondWithOK
+     * @covers App\Http\Controllers\Api\ApiController::setHTTPStatusCode
+     * @covers App\Rules\PasswordRule::passes
+     * @covers App\Http\Controllers\Api\ApiController::respond
      * @return void
      */
     public function test_user_create()
@@ -102,7 +111,11 @@ class UserTest extends TestCase
     /**
      * ユーザー編集
      *
-     * @covers \UserController
+     * @covers App\Http\Controllers\Api\Admin\UserController::__construct
+     * @covers App\Http\Controllers\Api\Admin\UserController::update
+     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::respond
+     * @covers App\Rules\PasswordRule::passes
      * @return void
      */
     public function test_user_edit()
@@ -132,7 +145,11 @@ class UserTest extends TestCase
     /**
      * ユーザー削除
      *
-     * @covers \UserController
+     * @covers App\Http\Controllers\Api\Admin\UserController::destroy
+     * @covers App\Http\Controllers\Api\Admin\UserController::__construct
+     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::respondObjectDeleted
+     * @covers App\Traits\JsonRespondController::respond
      * @return void
      */
     public function test_user_delete()
