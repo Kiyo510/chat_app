@@ -21,12 +21,12 @@ jobs:
           MYSQL_DATABASE: livechat_test_db
 
     env:
-      DB_CONNECTION: mysql
+      DB_CONNECTION: mysql_testing
       DB_HOST: 127.0.0.1
       DB_PORT: 3306
-      DB_DATABASE: livechat_test_db
-      DB_USERNAME: root
-      DB_PASSWORD: password
+      TESTING_DB_DATABASE: livechat_test_db
+      TESTING_DB_USERNAME: root
+      TESTING_DB_USERNAME: root
 
     steps:
       - uses: actions/checkout@v2
@@ -59,7 +59,7 @@ jobs:
       - name: composer dump autoload
         run: composer dump-autoload
       - name: Run migration
-        run: php artisan migrate --force
+        run: php artisan migrate --force --database=mysql_testing
       - name: Set .env
         run: cp .env.ci .env
       - name: Generate APP_KEY
@@ -67,12 +67,6 @@ jobs:
       - name: Run phpstan
         run: ./vendor/bin/phpstan --memory-limit=1G analyse --no-progress
       - name: Run PHP Unit
-        env: 
-          DB_HOST: 127.0.0.1
-          TESTING_DB_CONNECTION: mysql
-          TESTING_DB_DATABASE: livechat_test_db
-          TESTING_DB_USERNAME: root
-          TESTING_DB_PASSWORD: password
         run: XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
       - name: Upload coverage
         uses: codecov/codecov-action@v2
