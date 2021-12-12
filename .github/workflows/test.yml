@@ -67,6 +67,12 @@ jobs:
       - name: Run phpstan
         run: ./vendor/bin/phpstan --memory-limit=1G analyse --no-progress
       - name: Run PHP Unit
+        env: 
+          DB_HOST: 127.0.0.1
+          TESTING_DB_CONNECTION: mysql
+          TESTING_DB_DATABASE: livechat_test_db
+          TESTING_DB_USERNAME: root
+          TESTING_DB_PASSWORD: password
         run: XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
       - name: Upload coverage
         uses: codecov/codecov-action@v2
