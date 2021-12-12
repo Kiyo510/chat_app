@@ -22,7 +22,7 @@ jobs:
 
     env:
       DB_CONNECTION: mysql
-      DB_HOST: mysql
+      DB_HOST: 127.0.0.1
       DB_PORT: 3306
       DB_DATABASE: livechat_test_db
       DB_USERNAME: root
@@ -61,7 +61,7 @@ jobs:
       - name: Run migration
         run: php artisan migrate --force
       - name: Set .env
-        run: cp .env.example .env
+        run: cp .env.ci .env
       - name: Generate APP_KEY
         run: php artisan key:generate --quiet
       - name: Run phpstan
