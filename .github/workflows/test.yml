@@ -17,8 +17,9 @@ jobs:
           - 3306:3306
         options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
         env:
-          MYSQL_ROOT_PASSWORD: password
+          MYSQL_ROOT_PASSWORD:
           MYSQL_DATABASE: livechat_test_db
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
 
     env:
       DB_CONNECTION: mysql_testing
@@ -26,7 +27,6 @@ jobs:
       DB_PORT: 3306
       TESTING_DB_DATABASE: livechat_test_db
       TESTING_DB_USERNAME: root
-      TESTING_DB_PASSWORD: password
 
     steps:
       - uses: actions/checkout@v2
