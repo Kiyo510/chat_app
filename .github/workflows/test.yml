@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      mysql:
+      mysql_testing:
         image: mysql:8.0.19
         ports:
           - 3306:3306
