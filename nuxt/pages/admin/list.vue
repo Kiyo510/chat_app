@@ -66,7 +66,7 @@ export default {
           this.admins = res.data;
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     },
     openEditModal(item) {

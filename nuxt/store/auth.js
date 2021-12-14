@@ -13,14 +13,14 @@ export const actions = {
     const response = await this.$axios
       .$post("/login", { email, password })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
     commit("setAdminUser", response);
   },
   async logout({ commit }) {
     const response = await this.$axios.$post("/logout")
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
     commit('setAdminUser', null);
   }

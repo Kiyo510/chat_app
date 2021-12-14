@@ -98,7 +98,7 @@ export default {
           this.close();
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     },
   },

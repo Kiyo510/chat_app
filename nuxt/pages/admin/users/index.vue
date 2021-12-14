@@ -86,7 +86,7 @@ export default {
           this.users = res.data.data;
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     },
     close() {
