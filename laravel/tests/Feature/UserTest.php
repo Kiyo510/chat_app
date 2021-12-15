@@ -7,6 +7,12 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
+/**
+ * @coversDefaultClass App\Http\Controllers\Api\Admin\UserController
+ * @coversDefaultClass App\Traits\JsonRespondController
+ * @coversDefaultClass App\Http\Controllers\Api\ApiController
+ * @coversDefaultClass App\Rules\PasswordRule
+ */
 class UserTest extends TestCase
 {
     use RefreshDatabase;
@@ -54,10 +60,10 @@ class UserTest extends TestCase
     /**
      * ユーザー一覧
      * 
-     * @covers App\Http\Controllers\Api\Admin\UserController::index
-     * @covers App\Http\Controllers\Api\Admin\UserController::__construct
-     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
-     * @covers App\Traits\JsonRespondController::respond
+     * @covers ::index
+     * @covers ::__construct
+     * @covers ::getHTTPStatusCode
+     * @covers ::respond
      * @return void
      */
     public function test_user_get_all()
@@ -89,13 +95,13 @@ class UserTest extends TestCase
     /**
      * ユーザー登録
      *
-     * @covers App\Http\Controllers\Api\Admin\UserController::store
-     * @covers App\Http\Controllers\Api\Admin\UserController::__construct
-     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
-     * @covers App\Http\Controllers\Api\ApiController::respondWithOK
-     * @covers App\Http\Controllers\Api\ApiController::setHTTPStatusCode
-     * @covers App\Rules\PasswordRule::passes
-     * @covers App\Http\Controllers\Api\ApiController::respond
+     * @covers ::store
+     * @covers ::__construct
+     * @covers ::getHTTPStatusCode
+     * @covers ::respondWithOK
+     * @covers ::setHTTPStatusCode
+     * @covers ::passes
+     * @covers ::respond
      * @return void
      */
     public function test_user_create()
@@ -111,11 +117,11 @@ class UserTest extends TestCase
     /**
      * ユーザー編集
      *
-     * @covers App\Http\Controllers\Api\Admin\UserController::__construct
-     * @covers App\Http\Controllers\Api\Admin\UserController::update
-     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
-     * @covers App\Traits\JsonRespondController::respond
-     * @covers App\Rules\PasswordRule::passes
+     * @covers ::__construct
+     * @covers ::update
+     * @covers ::getHTTPStatusCode
+     * @covers ::respond
+     * @covers ::passes
      * @return void
      */
     public function test_user_edit()
@@ -145,11 +151,11 @@ class UserTest extends TestCase
     /**
      * ユーザー削除
      *
-     * @covers App\Http\Controllers\Api\Admin\UserController::destroy
-     * @covers App\Http\Controllers\Api\Admin\UserController::__construct
-     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
-     * @covers App\Traits\JsonRespondController::respondObjectDeleted
-     * @covers App\Traits\JsonRespondController::respond
+     * @covers ::destroy
+     * @covers ::__construct
+     * @covers ::getHTTPStatusCode
+     * @covers ::respondObjectDeleted
+     * @covers ::respond
      * @return void
      */
     public function test_user_delete()
