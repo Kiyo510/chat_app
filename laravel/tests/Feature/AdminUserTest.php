@@ -7,11 +7,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
-/**
- * @coversDefaultClass App\Http\Controllers\Api\Admin\AdminUserController
- * @coversDefaultClass App\Traits\JsonRespondController
- * @coversDefaultClass App\Rules\PasswordRule
- */
 class AdminUserTest extends TestCase
 {
     use RefreshDatabase;
@@ -22,9 +17,9 @@ class AdminUserTest extends TestCase
     /**
      * 管理者一覧
      * 
-     * @covers ::index
-     * @covers ::getHTTPStatusCode
-     * @covers ::respond
+     * @covers App\Http\Controllers\Api\Admin\AdminUserController::index
+     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::respond
      * @return void
      */
     public function test_admin_user_get_all()
@@ -54,12 +49,12 @@ class AdminUserTest extends TestCase
     /**
      * 管理者登録
      *
-     * @covers ::store
-     * @covers ::getHTTPStatusCode
-     * @covers ::setHTTPStatusCode
-     * @covers ::respondWithOK
-     * @covers ::respond
-     * @covers ::passes
+     * @covers App\Http\Controllers\Api\Admin\AdminUserController::store
+     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::setHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::respondWithOK
+     * @covers App\Traits\JsonRespondController::respond
+     * @covers App\Rules\PasswordRule::passes
      * @return void
      */
     public function test_admin_user_create()
@@ -75,10 +70,10 @@ class AdminUserTest extends TestCase
     /**
      * 管理者編集
      *
-     * @covers ::update
-     * @covers ::getHTTPStatusCode
-     * @covers ::respond
-     * @covers ::passes
+     * @covers App\Http\Controllers\Api\Admin\AdminUserController::update
+     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::respond
+     * @covers App\Rules\PasswordRule::passes
      * @return void
      */
     public function test_admin_user_edit()
@@ -108,10 +103,10 @@ class AdminUserTest extends TestCase
     /**
      * 管理者削除
      *
-     * @covers ::destroy
-     * @covers ::getHTTPStatusCode
-     * @covers ::respondObjectDeleted
-     * @covers ::respond
+     * @covers App\Http\Controllers\Api\Admin\AdminUserController::destroy
+     * @covers App\Traits\JsonRespondController::getHTTPStatusCode
+     * @covers App\Traits\JsonRespondController::respondObjectDeleted
+     * @covers App\Traits\JsonRespondController::respond
      * @return void
      */
     public function test_admin_user_delete()
