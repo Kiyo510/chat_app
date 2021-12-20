@@ -4,7 +4,6 @@ export const state = () => ({
 
 export const getters = {
     errors(state) {
-        console.log(state.errors);
         return state.errors
     },
 }

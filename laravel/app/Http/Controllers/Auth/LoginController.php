@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-//追加
 use Illuminate\Http\Request;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class LoginController extends Controller
 {
@@ -51,5 +51,25 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         return $user;
+    }
+
+    /**
+     * ログイン失敗時のエラーレスポンス（もっといい書き方あるはず...）
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function sendFailedLoginResponse(Request $request): void
+    {
+        $data = [
+            'error' => [
+                'message' => [
+                    'failed' => ['ログインに失敗しました。']
+                ],
+                'code' => 41,
+            ],
+        ];
+
+        throw new HttpResponseException(response()->json($data, 422, [], JSON_UNESCAPED_UNICODE));
     }
 }
