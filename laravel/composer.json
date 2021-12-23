@@ -21,6 +21,7 @@
         "barryvdh/laravel-ide-helper": "^2.10",
         "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.4",
+        "laravel/dusk": "^6.19",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^5.0",
         "nunomaduro/larastan": "^1.0",
