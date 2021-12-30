@@ -15,6 +15,7 @@
               rules="required"
             >
               <v-text-field
+                name="email"
                 v-model="email"
                 label="Email"
                 :error-messages="errors"
@@ -29,6 +30,7 @@
               rules="required"
             >
               <v-text-field
+                name="password"
                 type="password"
                 v-model="password"
                 label="Password"
