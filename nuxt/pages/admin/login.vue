@@ -2,6 +2,10 @@
   <v-app>
     <v-card width="500px" class="mx-auto mt-15">
       <v-card-title>管理画面</v-card-title>
+      <AlertMessage
+        width="'580px'"
+        alertClass="'mx-auto pa-3 ma-2 text-body-2'"
+      />
       <validation-observer ref="observer">
         <v-card-text>
           <v-form @submit.prevent="submit">
@@ -11,6 +15,7 @@
               rules="required"
             >
               <v-text-field
+                name="email"
                 v-model="email"
                 label="Email"
                 :error-messages="errors"
@@ -25,6 +30,7 @@
               rules="required"
             >
               <v-text-field
+                name="password"
                 type="password"
                 v-model="password"
                 label="Password"

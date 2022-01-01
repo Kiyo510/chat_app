@@ -8,10 +8,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
 /**
- * @coversDefaultClass App\Http\Controllers\Api\Admin\UserController
  * @coversDefaultClass App\Traits\JsonRespondController
- * @coversDefaultClass App\Http\Controllers\Api\ApiController
- * @coversDefaultClass App\Rules\PasswordRule
  */
 class UserTest extends TestCase
 {
@@ -60,8 +57,8 @@ class UserTest extends TestCase
     /**
      * ユーザー一覧
      * 
-     * @covers ::index
-     * @covers ::__construct
+     * @covers App\Http\Controllers\Api\Admin\UserController::index
+     * @covers App\Http\Controllers\Api\Admin\UserController::__construct
      * @covers ::getHTTPStatusCode
      * @covers ::respond
      * @return void
@@ -95,13 +92,13 @@ class UserTest extends TestCase
     /**
      * ユーザー登録
      *
-     * @covers ::store
-     * @covers ::__construct
+     * @covers App\Http\Controllers\Api\Admin\UserController::store
+     * @covers App\Http\Controllers\Api\Admin\UserController::__construct
+     * @covers App\Http\Controllers\Api\ApiController::respondWithOK
+     * @covers App\Http\Controllers\Api\ApiController::setHTTPStatusCode
+     * @covers App\Rules\PasswordRule::passes
+     * @covers App\Http\Controllers\Api\ApiController::respond
      * @covers ::getHTTPStatusCode
-     * @covers ::respondWithOK
-     * @covers ::setHTTPStatusCode
-     * @covers ::passes
-     * @covers ::respond
      * @return void
      */
     public function test_user_create()
@@ -117,11 +114,11 @@ class UserTest extends TestCase
     /**
      * ユーザー編集
      *
-     * @covers ::__construct
-     * @covers ::update
+     * @covers App\Http\Controllers\Api\Admin\UserController::__construct
+     * @covers App\Http\Controllers\Api\Admin\UserController::update
+     * @covers App\Rules\PasswordRule::passes
      * @covers ::getHTTPStatusCode
      * @covers ::respond
-     * @covers ::passes
      * @return void
      */
     public function test_user_edit()
@@ -151,8 +148,8 @@ class UserTest extends TestCase
     /**
      * ユーザー削除
      *
-     * @covers ::destroy
-     * @covers ::__construct
+     * @covers App\Http\Controllers\Api\Admin\UserController::destroy
+     * @covers App\Http\Controllers\Api\Admin\UserController::__construct
      * @covers ::getHTTPStatusCode
      * @covers ::respondObjectDeleted
      * @covers ::respond

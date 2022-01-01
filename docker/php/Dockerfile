@@ -8,8 +8,11 @@ COPY ./laravel/ /var/www/laravel/
 
 RUN apk upgrade --update && apk add --no-cache \
   coreutils freetype-dev jpeg-dev libjpeg-turbo-dev libpng-dev libmcrypt-dev oniguruma-dev\
-  git vim unzip tzdata \
+  git vim unzip zip libzip-dev tzdata \
+  chromium chromium-chromedriver ttf-freefont \
   libltdl autoconf gcc build-base && \
+  docker-php-ext-configure zip && \
+  docker-php-ext-install zip && \
   pecl install xdebug && \
   docker-php-ext-enable xdebug && \
   docker-php-ext-install pdo_mysql mysqli mbstring && \
