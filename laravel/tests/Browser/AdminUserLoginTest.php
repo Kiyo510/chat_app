@@ -17,8 +17,8 @@ class AdminUserLoginTest extends DuskTestCase
      *
      * @return void
      */
-    public function testAdminLogin()
-    {
+    // public function testAdminLogin()
+    // {
         // $user = AdminUser::factory()->create([
         //     'email' => 'test@dusk.com',
         //     'password' => bcrypt('test'),
@@ -32,5 +32,5 @@ class AdminUserLoginTest extends DuskTestCase
         //         ->pause(5000)
         //         ->assertPathIs('/admin/dashboard');
         // });
-    }
+    // }
 }
