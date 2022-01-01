@@ -24,13 +24,13 @@ class AdminUserLoginTest extends DuskTestCase
         //     'password' => bcrypt('test'),
         // ]);
 
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/admin/login')
-                ->type('email', 'admin@example.com')
-                ->type('password', 'Password11111')
-                ->press('LOGIN')
-                ->pause(5000)
-                ->assertPathIs('/admin/dashboard');
-        });
+        // $this->browse(function (Browser $browser) {
+        //     $browser->visit('/admin/login')
+        //         ->type('email', 'admin@example.com')
+        //         ->type('password', 'Password11111')
+        //         ->press('LOGIN')
+        //         ->pause(5000)
+        //         ->assertPathIs('/admin/dashboard');
+        // });
     }
 }
