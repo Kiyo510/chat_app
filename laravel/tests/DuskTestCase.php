@@ -24,7 +24,7 @@ abstract class DuskTestCase extends BaseTestCase
 
     protected function baseUrl()
     {
-        return 'http://front_app:3000';
+        return 'http://localhsot:3000';
     }
 
     /**
