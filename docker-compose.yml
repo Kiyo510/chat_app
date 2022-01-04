@@ -52,21 +52,21 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
-  # front_app:
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/node/Dockerfile
-  #     args:
-  #       - TZ=${TZ}
-  #   volumes:
-  #     - ./nuxt:/var/www/nuxt
-  #     - node_modules:/var/www/nuxt/node_modules
-  #   ports:
-  #     - ${FRONT_PORT}:3000
-  #   links:
-  #     - web
-  #   depends_on:
-  #     - web
+  front_app:
+    build:
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+      args:
+        - TZ=${TZ}
+    volumes:
+      - ./nuxt:/var/www/nuxt
+      - node_modules:/var/www/nuxt/node_modules
+    ports:
+      - ${FRONT_PORT}:3000
+    links:
+      - web
+    depends_on:
+      - web
 
 volumes:
   mysql_data:
