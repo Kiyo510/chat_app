@@ -67,8 +67,12 @@ jobs:
       - name: Run phpstan
         run: ./vendor/bin/phpstan --memory-limit=1G analyse --no-progress
       - name: Run PHP Unit
-        run: XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
+        run: php vendor/phpunit/phpunit/phpunit --coverage-text --colors=never > storage/logs/coverage.log
       - name: Upload coverage
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Cat Test Result
+        run: |
+          cat storage/logs/coverage.log
+        if: ${{ failure() }}
