@@ -15,7 +15,7 @@ class AdminUserController extends ApiController
     /**
      * 管理者一覧
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index(): JsonResponse
     {
@@ -30,7 +30,7 @@ class AdminUserController extends ApiController
      * 管理者登録
      *
      * @param  AdminUserStoreRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(AdminUserStoreRequest $request): JsonResponse
     {
@@ -73,7 +73,7 @@ class AdminUserController extends ApiController
      * 管理者削除
      *
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function destroy($id): JsonResponse
     {

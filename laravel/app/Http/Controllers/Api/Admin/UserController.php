@@ -24,7 +24,7 @@ class UserController extends ApiController
     /**
      * 管理画面のユーザー一覧
      *
-     * @return Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index(): JsonResponse
     {
@@ -39,7 +39,7 @@ class UserController extends ApiController
      * 管理画面のユーザー新規登録
      *
      * @param  UserStoreRequest $request
-     * @return Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(UserStoreRequest $request): JsonResponse
     {
@@ -61,7 +61,7 @@ class UserController extends ApiController
      *
      * @param  UserUpdateRequest $request
      * @param  string  $id
-     * @return Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function update(UserUpdateRequest $request, string $id): JsonResponse
     {
@@ -82,7 +82,7 @@ class UserController extends ApiController
      * ユーザー削除
      *
      * @param  string $id
-     * @return Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function destroy(string $id): JsonResponse
     {
