@@ -98,10 +98,10 @@ trait JsonRespondController
      * invalid query (http 500) エラーを送信
      * Error Code = 40.
      *
-     * @param  string  $message
+     * @param string|null $message
      * @return JsonResponse
      */
-    public function respondInvalidQuery($message = null)
+    public function respondInvalidQuery(string $message = null): JsonResponse
     {
         return $this->setHTTPStatusCode(500)
             ->setErrorCode(40)
@@ -114,7 +114,7 @@ trait JsonRespondController
      * @param  array $data
      * @return JsonResponse
      */
-    public function respondWithOK(array $data)
+    public function respondWithOK(array $data): JsonResponse
     {
         return $this->setHTTPStatusCode(200)
             ->respond($data);
@@ -127,7 +127,7 @@ trait JsonRespondController
      * @param  array  $headers  [description]
      * @return JsonResponse
      */
-    public function respond($data, $headers = []): JsonResponse
+    public function respond(array $data, array $headers = []): JsonResponse
     {
         return response()->json($data, $this->getHTTPStatusCode(), $headers);
     }
@@ -154,7 +154,7 @@ trait JsonRespondController
      * @param  int  $id
      * @return JsonResponse
      */
-    public function respondObjectDeleted($id)
+    public function respondObjectDeleted(int $id): JsonResponse
     {
         return $this->respond([
             'deleted' => true,
