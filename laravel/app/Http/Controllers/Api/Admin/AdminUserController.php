@@ -75,7 +75,7 @@ class AdminUserController extends ApiController
      * @param  int  $id
      * @return JsonResponse
      */
-    public function destroy($id): JsonResponse
+    public function destroy(int $id): JsonResponse
     {
         try {
             $adminUser = AdminUser::findOrFail($id);
