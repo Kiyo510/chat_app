@@ -47,7 +47,7 @@ class AdminUserUpdateRequest extends ApiRequest
     /**
      * バリデーション通過後、パスワードがリクエストにあればハッシュ化したものをリクエストパラメータにセット
      *
-     * @return void
+     * @return array
      */
     public function passedValidation(): array
     {
