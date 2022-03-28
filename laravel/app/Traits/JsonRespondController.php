@@ -34,10 +34,10 @@ trait JsonRespondController
     /**
      * HTTPステータスコードをセット
      *
-     * @param  int $statusCode
+     * @param int $statusCode
      * @return self
      */
-    public function setHTTPStatusCode($statusCode): self
+    public function setHTTPStatusCode(int $statusCode): self
     {
         $this->httpStatusCode = $statusCode;
 

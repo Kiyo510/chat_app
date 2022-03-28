@@ -4,4 +4,4 @@
 [Skypeちゃんねる](https://skypech.com/)の有料版のようなサービスを作る予定。
 フロントはNuxt.js、APIはLaravel。
 
-来年3月ぐらいまでにMVP版を公開したい。
+来年3月ぐらいまでにMVP版を公開したい
