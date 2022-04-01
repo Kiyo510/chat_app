@@ -14,12 +14,12 @@ trait JsonRespondController
     /**
      * @var int
      */
-    protected $httpStatusCode = 200;
+    protected int $httpStatusCode = 200;
 
     /**
      * @var int
      */
-    protected $errorCode;
+    protected int $errorCode;
 
     /**
      * HTTPステータスコードを取得
