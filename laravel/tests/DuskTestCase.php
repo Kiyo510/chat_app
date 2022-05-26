@@ -17,12 +17,12 @@ abstract class DuskTestCase extends BaseTestCase
      * @beforeClass
      * @return void
      */
-    public static function prepare()
+    public static function prepare(): void
     {
         static::startChromeDriver();
     }
 
-    protected function baseUrl()
+    protected function baseUrl(): string
     {
         return 'http://localhsot:3000';
     }
@@ -32,17 +32,15 @@ abstract class DuskTestCase extends BaseTestCase
      *
      * @return \Facebook\WebDriver\Remote\RemoteWebDriver
      */
-    protected function driver()
+    protected function driver(): RemoteWebDriver
     {
         $options = (new ChromeOptions)->addArguments(collect([
             '--window-size=1920,1080',
-        ])->unless($this->hasHeadlessDisabled(), function ($items) {
-            return $items->merge([
-                '--disable-gpu',
-                '--headless',
-                '--no-sandbox'
-            ]);
-        })->all());
+        ])->unless($this->hasHeadlessDisabled(), fn($items) => $items->merge([
+            '--disable-gpu',
+            '--headless',
+            '--no-sandbox'
+        ]))->all());
 
         return RemoteWebDriver::create(
             $_ENV['DUSK_DRIVER_URL'] ?? 'http://localhost:9515',
@@ -57,7 +55,7 @@ abstract class DuskTestCase extends BaseTestCase
      *
      * @return bool
      */
-    protected function hasHeadlessDisabled()
+    protected function hasHeadlessDisabled(): bool
     {
         return isset($_SERVER['DUSK_HEADLESS_DISABLED']) ||
                isset($_ENV['DUSK_HEADLESS_DISABLED']);
